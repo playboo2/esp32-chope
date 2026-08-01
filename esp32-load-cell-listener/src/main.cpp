@@ -3,19 +3,15 @@
 #include <Wire.h>
 #include <Adafruit_GFX.h>
 #include <Adafruit_SSD1306.h>
-#include <WiFi.h>
-#include <PubSubClient.h>
-#include "config_balancas.h"   // <--- mesmo header
+
+#include "config_balancas.h"
+#include "network.h"          // <--- nova camada de rede
 
 // OLED
 #define TELA_LARGURA 128
 #define TELA_ALTURA  64
 #define OLED_RESET   -1
 Adafruit_SSD1306 display(TELA_LARGURA, TELA_ALTURA, &Wire, OLED_RESET);
-
-// Rede / MQTT
-WiFiClient espClient;
-PubSubClient mqttClient(espClient);
 
 // EMA
 const float ALPHA = 0.3;
@@ -70,39 +66,12 @@ void mostrarMensagemDisplay(String l1, String l2) {
     display.display();
 }
 
-void conectarWiFi() {
-    Serial.print("Conectando no WiFi: ");
-    Serial.println(WIFI_SSID);
-    WiFi.begin(WIFI_SSID, WIFI_SENHA);
-    while (WiFi.status() != WL_CONNECTED) {
-        delay(500);
-        Serial.print(".");
-    }
-    Serial.println();
-    Serial.print("WiFi conectado! IP: ");
-    Serial.println(WiFi.localIP());
-}
-
-void reconectarMQTT() {
-    while (!mqttClient.connected()) {
-        Serial.print("Conectando no broker MQTT...");
-        if (mqttClient.connect("ESP32_MultiLoadCell")) {
-            Serial.println(" conectado!");
-        } else {
-            Serial.print(" falhou, codigo: ");
-            Serial.print(mqttClient.state());
-            Serial.println(" tentando de novo em 2s");
-            delay(2000);
-        }
-    }
-}
-
 void setup() {
     Serial.begin(115200);
     delay(1000);
 
     Serial.println();
-    Serial.println("=== MULTIPLAS LOAD CELLS (MQTT) ===");
+    Serial.println("=== MULTIPLAS LOAD CELLS (MQTT + mDNS) ===");
 
     if (!display.begin(SSD1306_SWITCHCAPVCC, 0x3C)) {
         Serial.println("ERRO: OLED nao encontrado.");
@@ -132,20 +101,15 @@ void setup() {
         Serial.println(cfg.fatorCalibracao);
     }
 
-    conectarWiFi();
-    mqttClient.setServer(MQTT_BROKER, MQTT_PORTA);
+    // WiFi + mDNS + MQTT
+    networkSetup();
 
     Serial.println("Pronto. Todas as balancas zeradas e calibradas.");
 }
 
 void loop() {
-    if (WiFi.status() != WL_CONNECTED) {
-        conectarWiFi();
-    }
-    if (!mqttClient.connected()) {
-        reconectarMQTT();
-    }
-    mqttClient.loop();
+    // Mantém WiFi/MQTT vivos
+    networkLoop();
 
     // Leitura de todos os canais
     for (int i = 0; i < NUM_LOAD_CELLS; i++) {
@@ -174,12 +138,13 @@ void loop() {
     unsigned long agora = millis();
     if (agora - ultimoEnvio >= INTERVALO_ENVIO) {
         ultimoEnvio = agora;
+
         for (int i = 0; i < NUM_LOAD_CELLS; i++) {
             const auto &cfg = LOAD_CELLS[i];
             auto &st = loadCellsState[i];
 
             String payload = String(st.ultimoKg, 2);
-            mqttClient.publish(cfg.mqttTopico, payload.c_str());
+            mqttPublish(cfg.mqttTopico, payload.c_str());
 
             Serial.print("Publicado em ");
             Serial.print(cfg.mqttTopico);
