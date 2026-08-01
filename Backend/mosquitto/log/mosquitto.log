@@ -1,0 +1,73 @@
+1785548347: mosquitto version 2.1.2 starting
+1785548347: Config loaded from /mosquitto/config/mosquitto.conf.
+1785548347: Bridge support available.
+1785548347: Persistence support available.
+1785548347: TLS support available.
+1785548347: TLS-PSK support available.
+1785548347: Websockets support available.
+1785548347: Opening ipv4 listen socket on port 1883.
+1785548347: Opening ipv6 listen socket on port 1883.
+1785548347: mosquitto version 2.1.2 running
+1785548463: New connection from ::1:59084 on port 1883.
+1785548463: New client connected from ::1:59084 as auto-5B8082F5-83E9-6D57-58C1-3FD23E65736A (p4, c1, k60).
+1785548519: New connection from ::1:52426 on port 1883.
+1785548519: New client connected from ::1:52426 as auto-3D95C8CE-6439-3725-75F0-A1D7D7671849 (p4, c1, k60).
+1785548519: Client auto-3D95C8CE-6439-3725-75F0-A1D7D7671849 [::1:52426] disconnected.
+1785550147: Saving in-memory database to /mosquitto/data//mosquitto.db.
+1785551948: Saving in-memory database to /mosquitto/data//mosquitto.db.
+1785553749: Saving in-memory database to /mosquitto/data//mosquitto.db.
+1785555549: Saving in-memory database to /mosquitto/data//mosquitto.db.
+1785557350: Saving in-memory database to /mosquitto/data//mosquitto.db.
+1785559151: Saving in-memory database to /mosquitto/data//mosquitto.db.
+1785559196: New connection from 172.18.0.4:34070 on port 1883.
+1785559196: New client connected from 172.18.0.4:34070 as nodereddd0bb6f1e2a71764 (p4, c1, k60).
+1785559321: New connection from ::1:35288 on port 1883.
+1785559321: New client connected from ::1:35288 as auto-63E89925-716B-890C-4EEA-4079DC6C9929 (p4, c1, k60).
+1785559321: Client auto-63E89925-716B-890C-4EEA-4079DC6C9929 [::1:35288] disconnected.
+1785560685: New connection from 172.18.0.1:39318 on port 1883.
+1785560685: New client connected from 172.18.0.1:39318 as ESP32_Canal1 (p4, c1, k15).
+1785560739: New connection from 172.18.0.1:39058 on port 1883.
+1785560739: Client ESP32_Canal1 [172.18.0.1:39318] disconnected: session taken over.
+1785560739: New client connected from 172.18.0.1:39058 as ESP32_Canal1 (p4, c1, k15).
+1785560802: New connection from 172.18.0.1:50918 on port 1883.
+1785560802: Client ESP32_Canal1 [172.18.0.1:39058] disconnected: session taken over.
+1785560802: New client connected from 172.18.0.1:50918 as ESP32_Canal1 (p4, c1, k15).
+1785560810: New connection from ::1:43378 on port 1883.
+1785560810: New client connected from ::1:43378 as auto-F00316C5-0893-2910-F34B-B6A0DCB6183A (p4, c1, k60).
+1785560838: Client ESP32_Canal1 [172.18.0.1:50918] disconnected: exceeded timeout.
+1785560843: New connection from 172.18.0.1:37542 on port 1883.
+1785560843: New client connected from 172.18.0.1:37542 as ESP32_Canal1 (p4, c1, k15).
+1785560859: Client nodereddd0bb6f1e2a71764 [172.18.0.4:34070] disconnected.
+1785560859: New connection from 172.18.0.4:43652 on port 1883.
+1785560859: New client connected from 172.18.0.4:43652 as nodered0f1a5a4b9a733583 (p4, c1, k60).
+1785560866: Client ESP32_Canal1 [172.18.0.1:37542] disconnected: exceeded timeout.
+1785560952: Saving in-memory database to /mosquitto/data//mosquitto.db.
+1785561025: New connection from ::1:35858 on port 1883.
+1785561025: New client connected from ::1:35858 as auto-CCC92673-0F3E-996E-9F64-5ECAE35A16CA (p4, c1, k60).
+1785561145: Client nodered0f1a5a4b9a733583 [172.18.0.4:43652] disconnected.
+1785561145: New connection from 172.18.0.4:35914 on port 1883.
+1785561145: New client connected from 172.18.0.4:35914 as nodered09fe4f7918c8c5d5 (p4, c1, k60).
+1785561231: New connection from ::1:41976 on port 1883.
+1785561231: New client connected from ::1:41976 as auto-A2A14EA6-C17E-43C6-BA7F-C17E190B2296 (p4, c1, k60).
+1785561819: New connection from 172.18.0.1:49130 on port 1883.
+1785561819: New client connected from 172.18.0.1:49130 as ESP32_Canal1 (p4, c1, k15).
+1785561845: Client ESP32_Canal1 [172.18.0.1:49130] disconnected: exceeded timeout.
+1785561990: New connection from 172.18.0.1:40326 on port 1883.
+1785561990: New client connected from 172.18.0.1:40326 as ESP32_Canal1 (p4, c1, k15).
+1785562091: Client ESP32_Canal1 [172.18.0.1:40326] disconnected: exceeded timeout.
+1785562094: New connection from 172.18.0.1:59808 on port 1883.
+1785562109: New connection from 172.18.0.1:43110 on port 1883.
+1785562109: New client connected from 172.18.0.1:43110 as ESP32_Canal1 (p4, c1, k15).
+1785562112: Client ESP32_Canal1 [172.18.0.1:43110] disconnected: session taken over.
+1785562112: New client connected from 172.18.0.1:59808 as ESP32_Canal1 (p4, c1, k15).
+1785562112: Client ESP32_Canal1 [172.18.0.1:59808] disconnected: connection closed by client.
+1785562113: New connection from 172.18.0.1:43122 on port 1883.
+1785562113: New client connected from 172.18.0.1:43122 as ESP32_Canal1 (p4, c1, k15).
+1785562135: Client ESP32_Canal1 [172.18.0.1:43122] disconnected: exceeded timeout.
+1785562135: New connection from 172.18.0.1:58496 on port 1883.
+1785562135: New client connected from 172.18.0.1:58496 as ESP32_Canal1 (p4, c1, k15).
+1785562612: Client ESP32_Canal1 [172.18.0.1:58496] disconnected: connection closed by client.
+1785562753: Saving in-memory database to /mosquitto/data//mosquitto.db.
+1785563548: New connection from 172.18.0.1:57566 on port 1883.
+1785563548: New client connected from 172.18.0.1:57566 as ESP32_Canal1 (p4, c1, k15).
+1785563846: Client ESP32_Canal1 [172.18.0.1:57566] disconnected: exceeded timeout.
