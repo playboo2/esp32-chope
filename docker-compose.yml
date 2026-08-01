@@ -3,13 +3,23 @@ services:
   mosquitto:
     image: eclipse-mosquitto:2
     container_name: chope-mosquitto
-    ports:
-      - "1883:1883"
+    # mDNS precisa aparecer na rede local, então é melhor usar host network
+    network_mode: host
     volumes:
       - ./configs/mosquitto:/mosquitto/config
       - ./volumes/mosquitto/data:/mosquitto/data
       - ./volumes/mosquitto/log:/mosquitto/log
     restart: unless-stopped
+    # quando usa host network, NÃO usa "ports:"
+
+  avahi:
+    image: flungo/avahi
+    container_name: chope-avahi
+    network_mode: host          # precisa escutar e anunciar na rede local
+    restart: unless-stopped
+    volumes:
+      # vamos montar os serviços do avahi daqui:
+      - ./configs/avahi/services:/etc/avahi/services
 
   influxdb:
     image: influxdb:2.7
