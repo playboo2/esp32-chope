@@ -22,7 +22,7 @@ jobs:
           pip install platformio
 
       - name: Build ESP32 firmware (all envs)
-        working-directory: .
+        working-directory: ./esp32-load-cell-listener
         run: |
           # build all defined envs from platformio.ini
           pio run
