@@ -1,0 +1,5 @@
+.pio
+.vscode/
+volumes/
+build/
+esp32-load-cell-listener/include/config_balancas.h
