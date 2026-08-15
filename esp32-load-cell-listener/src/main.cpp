@@ -73,6 +73,7 @@ void mostrarMensagemDisplay(String l1, String l2) {
 void conectarWiFi() {
     Serial.print("Conectando no WiFi: ");
     Serial.println(WIFI_SSID);
+    mostrarMensagemDisplay("Conectando WiFi:", String(WIFI_SSID));
     WiFi.begin(WIFI_SSID, WIFI_SENHA);
     while (WiFi.status() != WL_CONNECTED) {
         delay(500);
@@ -81,17 +82,29 @@ void conectarWiFi() {
     Serial.println();
     Serial.print("WiFi conectado! IP: ");
     Serial.println(WiFi.localIP());
+    mostrarMensagemDisplay("WiFi OK!", WiFi.localIP().toString());
 }
 
 void reconectarMQTT() {
     while (!mqttClient.connected()) {
         Serial.print("Conectando no broker MQTT...");
-        if (mqttClient.connect("ESP32_MultiLoadCell")) {
+        if (mqttClient.connect("ESP32_MultiLoadCell", MQTT_USUARIO, MQTT_SENHA)) {
             Serial.println(" conectado!");
         } else {
+            int state = mqttClient.state();
             Serial.print(" falhou, codigo: ");
-            Serial.print(mqttClient.state());
+            Serial.print(state);
             Serial.println(" tentando de novo em 2s");
+
+            String msg;
+            switch (state) {
+                case -4: msg = "Timeout conexao"; break;
+                case -2: msg = "Broker inalcancavel"; break;
+                case 4:  msg = "Usuario/senha errado"; break;
+                case 5:  msg = "Nao autorizado"; break;
+                default: msg = String("Erro cod ") + String(state); break;
+            }
+            mostrarMensagemDisplay("MQTT erro", msg);
             delay(2000);
         }
     }
